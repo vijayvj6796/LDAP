@@ -1,0 +1,30 @@
+ LDAP
+
+
+
+slappasswd -s Password1 -n > rootpwd
+  767  cat rootpwd 
+  768  vi config.ldif 
+  769  ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif 
+  770  ldapadd -x -W -D "cn=Manager,dc=example,dc=com" -f structure.ldif 
+  771  ldapsearch  -x -W -D "cn=Manager,dc=example,dc=com" -s sub "(objectclass=organizationalUnit)"
+  772  cat group.ldif 
+  773  ldapadd -x -W -D "cn=Manager,dn=example,dc=com" -f structure.ldif 
+  774  ldapadd -x -W -D "cn=Manager,dn=example,dc=com" -f group.ldif 
+  775  ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif 
+  776  ldapadd -x -W -D "cn=Manager,dn=example,dc=com" -f structure.ldif 
+  777  systemctl status slapd
+  778  systemctl restart slapd
+
+
+---------
+vi config.ldif 
+  812  ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif 
+  813  cat structure.ldif 
+  814  ldappasswd -s vijay@123 -W -D "cn=Manager,dc=example,dc=com" -x "uid=vijay,ou=People,dc=example,dc=com"
+vi config.ldif 
+  812  ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif 
+  813  cat structure.ldif 
+  814  ldappasswd -s vijay@123 -W -D "cn=Manager,dc=example,dc=com" -x "uid=vijay,ou=People,dc=example,dc=com"
+
+

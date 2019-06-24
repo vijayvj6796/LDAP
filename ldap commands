@@ -1,0 +1,22 @@
+how to install and configure LDAP?
+
+*yum install openldap openldap-servers openldap-clients
+
+*slappasswd
+*vi olcDatabase\=\{2\}hdb.ldif 
+*vi olcDatabase\=\{1\}monitor.ldif 
+*slaptest -u {slappasswd -s test -n > ldappwd}
+*cd /usr/share/openldap-servers/ 
+*cp DB_CONFIG.example /var/lib/ldap/example.com/DB_CONFIG {(cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG [root@ldap ~]# chown ldap:ldap /var/lib/ldap/*)}
+*wget http://www.padl.com/download/MigrationTools.tgz
+*vi migrate_common.ph (%s/padl/example.com/%g)
+*ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+*ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+*ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+*vi config.ldif 
+*ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif
+*ldapadd -x -W -D “cn=Manager,dc=example,dc=com” -f structure.ldif
+*authconfig --enableldap --ldapserver=example.com --ldapbasedn="dc=example,dc=com" --enablemkhomedir --update
+
+
+
