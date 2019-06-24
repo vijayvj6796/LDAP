@@ -1,0 +1,17 @@
+dn: uid=shanthi,ou=People,dc=example,dc=com
+uid: shanthi
+cn: shanthi
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$uNFpU4l.q9vsd5n8$EkRev4PCnsFjbJb7AjzrxHnoUXXCPATP6JEtLkB/eU.S/lOiCIpuyhPrn8RxBwhmgrfSJqsvTt7yiOtDQGEFa/
+shadowMin: 0
+shadowMax: 99999
+shadowWarning: 7
+loginShell: /bin/bash
+uidNumber: 1007
+gidNumber: 1007
+homeDirectory: /home/shanthi
+gecos: shanthi
+
